@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}归档{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="page-title text-center categ">文章归档</h1>
+    <div class="all-archive">
+      <div class="categories">
+        <h2 class="post-title">分类</h2>
+        <ul class="list-group">
+          {% for sort in sort_list %}
+              <li class="list-group-item"><a href="{% url 'blog_with_type' sort.id%}">{{ sort.name }}<span class="post-count">({{ sort.content_set.count  }})</span></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="clound-tag">
+        <h2 class="post-title">标签</h2>
+        <ul class="list-group">
+            {% for tag in tags %}
+              <li class="list-group-item"><a href="{% url 'blog_with_tag' tag.id %}">{{ tag.name }}<span class="post-count">({{ tag.content_set.count  }})</span></a></li>
+
+            {% endfor %}
+
+        </ul>
+      </div>
+
+      <div class="archive">
+        <h2 class="post-title">归档</h2>
+        <ul class="list-group">
+            {% for blog_date in blog_dates %}
+              <div class="post-item">
+                <li class="list-group-item"><a href="{% url 'blog_with_date' blog_date.year blog_date.month %}">{{ blog_date|date:'Y年m月' }}</a></li>
+              </div>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

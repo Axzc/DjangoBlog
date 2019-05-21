@@ -1,0 +1,515 @@
+h1 {
+  font-size: 26px;
+}
+
+img {
+  max-width:100%;
+}
+
+
+
+/* #---------------导航栏--------------- */
+.navbar.navbar-right a{
+  color: #000000;
+}
+
+.navbar .navbar-header .navbar-brand a {
+  font-size: 36px;
+  padding:30px 5px 30px 0px;
+  color: #000000;
+}
+
+.navbar .navbar-header .navbar-brand a:hover {
+  text-decoration: none;
+}
+
+.navbar {
+  margin-top: 30px;
+  background: #fff;
+  border: 0px;
+}
+
+#toggle-checkbox:checked ~ div {
+  display: block !important;
+}
+
+#toggle-label {
+  display: inline-block;
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  display: none;
+}
+
+
+/* #------------------侧边栏--------------- */
+
+.search-bar .parent {
+  padding-top: 40px;
+  margin-bottom: 30px;
+}
+
+.search-bar .parent .search {
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    border: 0px;
+    padding-left: 20px;
+    position: absolute;
+}
+
+/* .search-bar .parent .search input:hover { */
+
+
+.search-bar .parent input:focus {
+  border: 1px solid #000000;
+}
+
+
+.side-bar .list-group-item {
+  border: 0;
+}
+
+.side-bar .list-group-item:hover {
+  font-weight: bold;
+}
+
+.sidebar-title {
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+
+.side-bar-card {
+  background: #fff;
+  margin-top: 15px;
+  padding: 10px 0;
+}
+
+.side-bar-card .card-title,
+.side-bar-card .card-body .list .item{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.popular .card-body .list .item .title {
+  padding-bottom: 5px;
+}
+
+.side-bar-card .card-body .list .item .desc, .post-count,
+.main .entry-header .entry-meta .post-category {
+  font-size: 10px;
+  color: #777777;
+}
+
+.side-bar-card .card-body .list .item .title a,
+.main .entry-content .read-content a{
+  color: #444444;
+}
+
+.clound-tag .card-body .list .item .title {
+
+  background-color: rgba(0, 0, 0, 0.04);
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  font-weight: normal;
+  line-height: 1.42857143;
+}
+
+.clound-tag .card-body .list .item .title a {
+  font-size: 13;
+}
+
+.navbar .container .navbar-right .navbar-cot a {
+  font-size: 18px;
+  color: #000000;
+}
+
+
+.main .entry-header .post-title a,
+.main .entry-content .read-content a,
+.rsidebar .clound-tag .title a,
+.side-bar-card .card-body .list .item a:hover {
+  color: #000000;
+  text-decoration: none;
+
+}
+
+.archive .card-body .list .item .title {
+  margin-bottom: 10px;
+}
+.sort .card-body .list .item .title {
+  margin-bottom: 10px;
+}
+
+.sort .card-body .list .item .post-count {
+  padding-left: 7px;
+}
+
+
+/* .rsidebar > a {
+  line-height: 170%;
+} */
+
+.search-bar {
+  max-width: 80%;
+}
+
+
+
+/* ----------------- 内容------------------- */
+
+p {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+    word-spacing: 1px;
+    letter-spacing: 0.01em;
+}
+
+.btn {
+  font-size: 18px;
+}
+
+.bth:hover {
+  color: #000000;
+}
+
+.post {
+  padding: 30px 30px 0;
+}
+
+.main .entry-header .post-title {
+    text-align: center;
+    font-size: 1.9em;
+    margin-bottom: 20px;
+    margin-top: 0;
+    line-height: 1.6;
+    padding: 10px 20px 0px;
+
+}
+
+.main .entry-header .entry-meta,
+.read-content {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.main .pagination{
+  margin-top: 30px;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.main .pagination .active a{
+  background-color: rgba(0, 0, 0, 0.07);
+}
+.main .pagination a {
+  font-size: 17px;
+  border: 0;
+  color: #444444;
+  display: inline-block;
+}
+
+.main .pagination a:hover {
+  color: #000000;
+  background-color: #fff;
+  border: 1px solid #8a1e64e6;
+}
+
+.main .entry-header .entry-meta span:after {
+  content: "・";
+  right: 10px;
+}
+
+.main .entry-header .entry-meta span:last-child::after {
+  content: " ";
+}
+
+.entry-content {
+  font-size: 18px;
+  color: #000000;
+  font-weight: 400;
+}
+
+.share {
+  padding-top: 20px;
+}
+
+.comment {
+  padding-top: 30px;
+}
+
+.add-comment {
+  padding-top: 10px;
+}
+
+.comment-form {
+  max-width: 500px;
+}
+
+.comment-form .required:after {
+  content:" *";
+  color:#C00;
+}
+
+.comment-form .host:after {
+  content: " ";
+}
+
+.comment_date {
+  font-size: 5px;
+  color: #777777;
+}
+
+
+
+.comment-form .from-group {
+  left: 20px;
+}
+
+/*.comment-form .from-group .from-control {*/
+  /*width: 70px;*/
+/*}*/
+
+.comment-form .btn-primary {
+  background-color: #fff;
+  border: 0px;
+  color: #444444;
+  font-size: 14px;
+  width: 77px;
+}
+
+.comment-form button:hover{
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+}
+/* .comment-form button:hover {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+} */
+
+.comment-list {
+  max-width: 500px;
+}
+
+.comment-list,.comment-list ol{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.comment-list li{
+  padding:14px;
+  margin-top:10px;
+  border:1px solid #EEE;
+}
+.comment-list li.comment-level-odd{
+  background:#F6F6F3;
+}
+.comment-list li.comment-level-even{
+  background:#FFF;
+}
+.comment-list li.comment-by-author{
+  background:#FFF9E8;
+}
+.comment-list li .comment-reply{
+  text-align:right;
+  font-size:.92857em;
+}
+.comment-meta a{
+  color:#999;
+  font-size:.92857em;
+}
+.comment-author{
+  display:block;
+  margin-bottom:3px;
+  color:#444;
+}
+.comment-author .avatar{
+  float:left;
+  margin-right:10px;
+}
+.comment-author cite{
+  font-weight:bold;
+  font-style:normal;
+}
+.comment-list.respond{
+  margin-top:15px;
+  border-top:1px solid #EEE;
+}
+.respond .cancel-comment-reply{
+  float:right;
+  margin-top:15px;
+  font-size:.92857em;
+}
+
+
+/* #---------------footer--------------- */
+.copyright {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.copyright hr {
+  padding-bottom: 20px;
+}
+
+.copyright a{
+  color: #444444;
+}
+
+.copyright a:hover{
+  text-decoration: none;
+  color: #000000;
+}
+
+.footer{
+    /*position:fixed;*/
+    /*bottom:7%;*/
+    /*width:100%;*/
+    margin-top: 20px;
+    padding: 50px 0;
+    text-align: center;
+    color: #999;
+    /*position: absolute;*/
+    /*bottom: 0;  width: 100%;*/
+    /*color:#000000;*/
+    font-size: 16px;
+    height: 50px;
+}
+
+
+/* #--------------------关于----------------- */
+
+.aboutme {
+  margin-bottom: 50px;
+
+}
+
+
+.aboutme .post {
+  margin-top: 20px;
+  padding: 30px 30px 0;
+  margin-bottom: 50px;
+}
+
+
+.img-responsive-center .img-responsive {
+  /*max-width: 630px;*/
+  /*max-height: 330px;*/
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+}
+
+.entry-content .content p,
+.aboutme .social a {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.aboutme .social {
+  list-style: none;
+  display: inline;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.aboutme .social .social-list{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-inline-start: 0px;
+
+}
+
+.aboutme .social .social-list li {
+  padding-left: 25px;
+  display: inline-block;
+}
+.aboutme .social .social-list a {
+  font-size: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  color: #000000;
+}
+.aboutme .social .social-list a:hover {
+  text-decoration: none;
+  /* background-color: #999999; */
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+}
+
+
+/* #------------------归档---------------------- */
+.categ{
+  font-size: 29px;
+  font-weight: 500;
+}
+
+.all-archive{
+  padding-left: 10%;
+}
+
+.all-archive .list-group {
+  padding-bottom: 30px;
+}
+
+.all-archive .list-group a {
+  font-weight: 300px;
+  color: #444444;
+}
+
+.all-archive .list-group a:hover{
+  color: #000000;
+  text-decoration: none;
+}
+
+.all-archive .post-title {
+  font-weight: 300 px;
+  font-size: 24px;
+}
+
+
+.all-archive .list-group .list-group-item{
+  text-align: left;
+  border: 0px;
+  font-size: 18px;
+}
+
+.all-archive .list-group .post-count {
+  color: #111111;
+  font-size: 14px;
+}
+
+
+
+/* #-------------------blog--------------------- */
+.post-item .entry-header .post-title a,
+.post-item  .entry-content .read-content a{
+  color: #444444;
+}
+
+.post-item .entry-header .post-title a,
+.post-item  .entry-content .read-content a:hover{
+  text-decoration: none;
+  color: #000000;
+}
+
+.post-item .entry-header .post-title{
+  margin-bottom: 5px;
+}
+
+.post-item .entry-meta .post-category {
+  font-size: 10px;
+  color: #777777;
+}
+
+
+.entry-content {
+  padding-top: 20px;
+}
+
+.post-item {
+  text-align:center;
+}

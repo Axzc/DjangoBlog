@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}关于{% endblock %}
+
+{% block content %}
+  <div class="container aboutme">
+    <div class="row">
+      <div class="col-sm-12 main clear-fix">
+        <h1 class="page-title text-center">关于 我或这个博客</h1>
+        <article class="post">
+    				<div class="entry-content clearfix">
+    					<figure class="img-responsive-center">
+    						<img class="img-responsive" src="{% static '/image/lvxing.jpeg' %}" alt="简介">
+    					</figure>
+              <div class="content">
+      					<p>一直以来感觉自己思考了很多的问题,无论是个人的职业规划或者是人生感悟,总觉的自己
+                思考了很多却无处安放.于是有了这个博客</p>
+      					<p>这个博客不仅会记录 技术相关的文章还会写一些关于 摄影,旅行,或者自己的一些观点</p>
+                <p>最重要的是坚持了每周的分享和更新,让在不断的总结和积累的过程中看到自己一点点的进步而变得更有自信</p>
+                <p>分享给屏幕前的你,记录给未来的我</p>
+      					<p>个人邮箱:meetzhicheng.xing@gmail.com</p>
+    					</div>
+    				</div>
+    		</article>
+        <div class="social">
+          <h1 class="page-title text-center">社交</h1>
+          <ul class="social-list">
+            <li><a href="https://github.com/Axzc">github</a></li>
+            <li><a href="https://weibo.com/2703502667/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1">weibo</a></li>
+            <li><a href="https://twitter.com/Detomoyu_ta">twitter</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

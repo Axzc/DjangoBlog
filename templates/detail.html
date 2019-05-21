@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}{{ blog.title }}{% endblock %}
+
+{% block content %}
+    <div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="row">
+      <div class="col-sm-8 main clear-fix">
+        <article class="article">
+          <header class="entry-header">
+              <h1 class="post-title">{{ blog.title }}</h1>
+              <div class="entry-meta">
+                {% for tag in blog.tags.all %}
+                    <span class="post-category">{{ tag.name }}</span>
+                {% endfor %}
+                <span class="post-category">{{ blog.category }}</span>
+                <span class="post-category">{{ blog.author }}</span>
+                <span class="post-category">{{ blog.created }}</span>
+                <span class="post-category">阅读:{{ blog.views }}</span>
+              </div>
+          </header>
+          <div class="entry-content">
+            {{ blog.text | safe }}
+          </div>
+        </article>
+        <div class="share">
+          <b>分享到:</b>
+          <div class="social-share"></div>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+        </div>
+
+        <div class="comment">
+          <h4>共有 {{ comment_count }} 条评论</h4>
+              {% for comment in comment_list %}
+                  {% if comment.reply == None %}  {# 如果是文章评论(不是评论回复) #}
+                      {% if not forloop.first %}  {# 如果不是遍历的最后一向 #}
+                          </li>
+                      {% endif %}
+                      <ol class="comment-list">
+                      <li id="comment-7" class="comment-body comment-parent comment-odd">
+                          <div class="comment-author">
+                           <img class="avatar" src="{% static 'image/A.png' %}" alt="用户头像" width="32" height="32">
+{#                              <img src="{% static 'image/Avatar.jpeg' %}" alt="">#}
+                           <cite class="fn">{{ comment.name }}</cite>
+                          </div>
+                        <div class="comment-meta">
+                          <div class="comment_date">{{ comment.created }}</div>
+                        </div>
+                          <div class="comment-content">
+                        <p>{{ comment.text }}</p>
+                        </div>
+                          <div class="comment-reply">
+                          <a href="#publish" rel="nofollow" onclick="reply('{{ comment.name }}',{{ comment.id }})">回复</a>
+                        </div>
+{#                      </li>#}
+                  {% else %}
+{#                      <li id="comment-7" class="comment-body comment-parent comment-odd">#}
+                        <div class="comment-author"> <!--回复评论-->
+                           <img class="avatar" src="{% static 'image/A.png' %}" alt="世界杯竞猜" width="32" height="32">
+                           <cite class="fn">{{ comment.name }}</cite>
+                        </div>
+                      <div class="comment-meta">
+                          <div class="comment_date">{{ comment.created }}</div>
+                        </div>
+                        <div class="comment-content">
+                        <p>{{ comment.text }}</p>
+                        </div>
+                        <div class="comment-reply">
+                          <a href="#publish" rel="nofollow" onclick="reply('{{ comment.name }}',{{ comment.id }})">回复</a>
+                        </div>
+
+{#                      </li>#}
+                  {% endif %}
+                  {% if forloop.last %} <!--如果是循环遍历的最后一项-->
+                      </li>
+                  {% endif %}
+                  {% empty %} <!--如果数据列表是空的-->
+                  <h4>暂无评论</h4>
+
+              {% endfor %}
+
+          </ol>
+
+
+          <div class="add-comment">
+            <h4 id="publish">添加新评论</h4>
+            <input type="hidden" id="reply" name="reply" value="0"> <!--隐藏元素 用于记录回复的目标-->
+            <div class="comment-form">
+                  <div class="form-group">
+                  <label for="{{ form.name.id_for_label }}" class="required">称呼</label>
+                       {{ form.name }}
+                  </div>
+
+                  <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}" class="required">Email</label>
+                      {{ form.email }}
+                  </div>
+
+                  <div class="form-group">
+                    <label for="{{ form.host.id_for_label }}" class="required host">网 站</label>
+                    {{ form.host }}
+                  </div>
+
+                  <div class="form-group">
+                    <label for="{{ form.text.class_for_label }}" class="required">内容</label>
+                      <br>
+                    {{ form.text }}
+                  </div>
+                {{ form.errors }}
+
+
+
+                  <div class="form-group">
+                    <button type="button" name="button" class="btn btn-primary" id="submit_comment">回复</button>
+                  </div>
+                <label id="comment_message" hidden style="margin-top: 10px;vertical-align: middle;color: green"></label>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+        <div class="col-sm-4 rsidebar">
+        <div class="search-bar">
+          <form action="{% url 'search' %}" class="parent" method="get">
+              {% csrf_token %}
+              <input type="text" class="search" placeholder="搜索" name="search">
+          </form>
+        </div>
+        <div class="side-bar-card popular">
+          <div class="card-title">
+            <h3>热门文章</h3>
+          </div>
+          <div class="card-body">
+            <div class="list">
+              {% for popular in popular_list %}
+                  <div class="item">
+                    <div class="title"><a href="{% url 'blog_detail' popular.id %}">{{ popular.title }}</a></div>
+                    <div class="desc">{{ popular.views }} 阅读</div>
+                  </div>
+              {% endfor %}
+
+            </div>
+          </div>
+        </div>
+        <div class="side-bar-card sort">
+          <div class="card-title">
+            <h3>分类</h3>
+          </div>
+          <div class="card-body">
+            <div class="list">
+              {% for sort in sort_list %}
+                  <div class="item">
+                    <div class="title"><a href="{% url 'blog_with_type' sort.id%}">{{ sort.name }}<span class="post-count">{{ sort.content_set.count  }}</span></a></div>
+                  </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="side-bar-card clound-tag">
+          <div class="card-title">
+            <h3>标签</h3>
+          </div>
+          <div class="card-body">
+            <div class="list">
+              <div class="item">
+                  {% for tag in tags %}
+                     <div class="title label label-default"><a href="{% url 'blog_with_tag' tag.id %}">{{ tag.name }}</a></div>
+                  {% endfor %}
+             </div>
+            </div>
+          </div>
+        </div>
+        <div class="side-bar-card archive">
+          <div class="card-title">
+            <h3>归档</h3>
+          </div>
+          <div class="card-body">
+            <div class="list">
+              {% for blog_date in blog_dates %}
+                  <div class="item">
+                    <div class="title"><a href="{% url 'blog_with_date' blog_date.year blog_date.month %}">{{ blog_date|date:'Y年m月' }}</a></div>
+                  </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+    <script>
+        function reply(comment_name, comment_id) {
+            $('#content').attr('placeholder', '回复' + comment_name + '的内容：'); // 设置内容输入框的提示
+            $('#reply').val(comment_id) //设置隐藏元素的值为评论目标的id
+        }
+    </script>
+
+    <script>
+    $(document).ready(function () {
+        $('#submit_comment').click(function () { // 定义回复按钮点击时调用的函数
+            $.ajaxSetup({ // 添加防止跨域攻击的代码
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}'}
+            });
+            var reply = $('#reply').val(); // 将评论目标id存入变量
+            var name = $('#name').val(); // 将评论人昵称存入变量
+            var email = $('#email').val(); // 将评论人邮箱地址存入变量
+            var host = $('#host').val();
+            var content = $('#content').val(); // 将评论内容存入变量
+            if (name && email && content) { // 如果所有内容都已填写
+                console.log('done');
+                $.post('{% url 'comment' %}', { // 用post方法提交请求
+                    'article': {{ blog.id }}, // 请求中包含的参数字典
+                    'reply': reply,
+                    'name': name,
+                    'email': email,
+                    'host': host,
+                    'text': content
+                }, function (result) { // 回调函数获取返回结果
+                    if (result === '200') { // 如果返回评论成功编码
+                        $('#comment_message').css({color: "green"}).html('评论成功！'); // 设置提示元素的样式与文字
+                    } else {
+                        $('#comment_message').css({color: "red"}).html('评论失败！');
+                    }
+                });
+                $('#comment_message').removeAttr('hidden'); // 去除提示元素的隐藏属性将提示显示在页面
+                setTimeout(function () { // 设置超时后执行的函数
+                    location.reload() // 重载页面内容
+                }, 1000); // 设置超时时长
+            } else { // 如果不是所有内容都已填写
+                $('#comment_message').removeAttr('hidden').html('请检查填写的内容！').css({color: "red"});
+                // 去除提示元素的隐藏属性将提示显示在页面，同时设置提示的样式与文字
+            }
+        });
+    });
+</script>
+
+
+{#    <script>#}
+{#    function reply(comment_name, comment_id) {#}
+{#        $('#content').attr('placeholder', '回复' + comment_name + '的内容：'); // 设置内容输入框的提示#}
+{#        $('#reply').val(comment_id) //设置隐藏元素的值为评论目标的id#}
+{#    }#}
+{#</script>#}
+
+{% endblock %}
+
+
+
+

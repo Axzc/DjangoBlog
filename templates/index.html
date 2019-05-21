@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}首页{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 main clear-fix">
+          {% for blog in blogs %}
+               <article class="post">
+                  <header class="entry-header">
+                    <h1 class="post-title"><a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a></h1>
+                    <div class="entry-meta">
+                    {% for tag in blog.tags.all %}
+                        <span class="post-category">{{ tag.name }}</span>
+                    {% endfor %}
+                      <span class="post-category">{{ blog.author }}</span>
+                      <span class="post-category">{{ blog.category }}</span>
+                      <span class="post-category">{{ blog.created }}</span>
+                      <span class="post-category">{{ blog.views }}</span>
+                    </div>
+                  </header>
+                  <div class="entry-content clearfix">
+                    <p>{{ blog.slug | slice:":50" | add:'......' }}</p>
+                    <div class="read-content">
+                      <a href="{% url 'blog_detail' blog.id %}" class="btn btn-defautl">阅读</a>
+                    </div>
+                  </div>
+                </article>
+
+          {% endfor %}
+
+        <ul class="pagination">
+        {% if blogs.paginator.num_pages > 1 %}
+            {% if blogs.has_previous %}
+                <li><a href="?page={{ blogs.previous_page_number }}">上一页</a></li>
+            {% else %}
+                <li><a href="#" style="display: none">上一页</a></li>
+            {% endif %}
+
+            {% for blog_num in page_range %}
+
+                {% if blog_num == blogs.number %}
+                    <li class="active"><a href="?page={{ blog_num }}">{{ blog_num }}</a></li>
+                {% else %}
+                    <li><a href="?page={{ blog_num }}">{{ blog_num }}</a></li>
+                {% endif %}
+
+            {% endfor %}
+
+            {% if blogs.has_next %}
+                <li><a href="?page={{ blogs.next_page_number }}">下一页</a></li>
+            {% else %}
+                <li><a href="#" style="display: none">下一页</a></li>
+            {% endif %}
+        {% endif %}
+
+        </ul>
+      </div>
+
+      <div class="col-sm-4 rsidebar">
+        <div class="search-bar">
+          <form action="{% url 'search' %}" class="parent" method="get">
+              {% csrf_token %}
+              <input type="text" class="search" placeholder="搜索" name="search">
+          </form>
+        </div>
+        <div class="side-bar-card popular">
+          <div class="card-title">
+            <h3>热门文章</h3>
+          </div>
+          <div class="card-body">
+            <div class="list">
+              {% for popular in popular_list %}
+                  <div class="item">
+                    <div class="title"><a href="{% url 'blog_detail' popular.id%}">{{ popular.title }}</a></div>
+                    <div class="desc">{{ popular.views }} 阅读</div>
+                  </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="side-bar-card sort">
+          <div class="card-title">
+            <h3>分类</h3>
+          </div>
+          <div class="card-body">
+            <div class="list">
+              {% for sort in sort_list %}
+                  <div class="item">
+                    <div class="title"><a href="{% url 'blog_with_type' sort.id%}">{{ sort.name }}<span class="post-count">{{ sort.content_set.count  }}</span></a></div>
+                  </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="side-bar-card clound-tag">
+          <div class="card-title">
+            <h3>标签</h3>
+          </div>
+          <div class="card-body">
+            <div class="list">
+              <div class="item">
+                  {% for tag in tags %}
+                     <div class="title label label-default"><a href="{% url 'blog_with_tag' tag.id %}">{{ tag.name }}</a></div>
+                  {% endfor %}
+             </div>
+            </div>
+          </div>
+        </div>
+        <div class="side-bar-card archive">
+          <div class="card-title">
+            <h3>归档</h3>
+          </div>
+          <div class="card-body">
+            <div class="list">
+              {% for blog_date in blog_dates %}
+                  <div class="item">
+                    <div class="title"><a href="{% url 'blog_with_date' blog_date.year blog_date.month %}">{{ blog_date|date:'Y年m月' }}</a></div>
+                  </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}
+
+
+{% block load_js %}
+  <script type="text/javascript" src="{% static "js/anvas-nest.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/bgp.js" %}"></script>
+{% endblock %}
+
